@@ -1,26 +1,282 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 93%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 94%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.5% 48%;
   }
 }
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ライトモード用のカスタムスタイル */
+/* ダークモード用のカスタムスタイル */
+/* SAO風のカスタムスタイル */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arial", sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* スクロールバーを非表示にするユーティリティクラス */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* 六角形クリップパス */
+.clip-hexagon {
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+}
+
+/* SAOボタンスタイル */
+.sao-button {
+  position: relative;
+  background-color: rgba(23, 52, 85, 0.5);
+  border: 1px solid rgba(74, 137, 175, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.sao-button:hover {
+  background-color: rgba(23, 52, 85, 0.7);
+  border-color: rgba(104, 197, 232, 0.5);
+}
+
+.sao-button-active {
+  position: relative;
+  background-color: rgba(23, 52, 85, 0.7);
+  border: 1px solid rgba(104, 197, 232, 0.5);
+  box-shadow: 0 0 10px rgba(104, 197, 232, 0.3);
+  overflow: hidden;
+}
+
+/* SAO電源ボタンスタイル */
+.sao-power-on {
+  box-shadow: 0 0 15px rgba(104, 197, 232, 0.4);
+}
+
+.sao-power-off {
+  box-shadow: none;
+}
+
+/* SAOナビゲーションスタイル */
+.sao-nav {
+  box-shadow: none;
+}
+
+.sao-nav-active {
+  box-shadow: 0 0 15px rgba(104, 197, 232, 0.4);
+}
+
+/* SAOスライダースタイル */
+.sao-slider [data-orientation="horizontal"] {
+  height: 4px;
+  background-color: rgba(23, 52, 85, 0.7);
+  border: 1px solid rgba(74, 137, 175, 0.3);
+}
+
+.sao-slider [data-orientation="horizontal"] > div {
+  background: linear-gradient(90deg, rgba(74, 137, 175, 0.5), rgba(104, 197, 232, 0.8));
+}
+
+.sao-slider [role="slider"] {
+  background-color: #0a1428;
+  border: 2px solid #68c5e8;
+  box-shadow: 0 0 5px rgba(104, 197, 232, 0.5);
+  height: 16px;
+  width: 16px;
+}
+
+/* 浮遊アニメーション */
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float3 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float1 {
+  animation: float1 15s ease-in-out infinite;
+}
+
+.animate-float2 {
+  animation: float2 12s ease-in-out infinite;
+}
+
+.animate-float3 {
+  animation: float3 10s ease-in-out infinite;
+}
+
+/* 全画面表示のためのスタイル */
+html,
+body {
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* アニメーション */
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* ドラッグハンドルのスタイル */
+.handle-shadow {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.handle-active {
+  transform: scale(1.2);
+}
+
+/* スライドアニメーション */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in-from-left {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+.animate-slide-in-from-right {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.animate-slide-out-to-left {
+  animation: slideOutToLeft 0.5s ease-out forwards;
+}
+
+.animate-slide-out-to-right {
+  animation: slideOutToRight 0.5s ease-out forwards;
 }
